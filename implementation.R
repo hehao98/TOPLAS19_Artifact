@@ -134,6 +134,9 @@ summarizeByLanguage = function(what) {
 }
 
 logTransform = function(what, log1 = log, log2 = log) {
+    domain_f = factor(what$domain)
+    language_f = factor(what$language)
+    combined_f = factor(what$combined)
     data.frame(
         language = what$language, 
         ldevs = log1(what$devs),
@@ -142,12 +145,12 @@ logTransform = function(what, log1 = log, log2 = log) {
         lmax_commit_age=log1(what$max_commit_age),
         lbcommits=log2(what$bcommits + 0.5*(what$bcommits==0)),
         bcommits=what$bcommits,
-        combined=factor(what$combined),
-        domain=factor(what$domain),
-        domain_r = relevel(what$domain, rev(levels(what$domain))[1]),
-        language_r = relevel(what$language, rev(levels(what$language))[1]),
+        combined=combined_f,
+        domain=domain_f,
+        domain_r = relevel(domain_f, rev(levels(domain_f))[1]),
+        language_r = relevel(language_f, rev(levels(language_f))[1]),
         commits = what$commits,
-        combined_r = relevel(what$combined, rev(levels(what$combined))[1])
+        combined_r = relevel(combined_f, rev(levels(combined_f))[1])
     )
 }
 
