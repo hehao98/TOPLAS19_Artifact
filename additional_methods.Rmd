@@ -83,9 +83,9 @@ adjustPValues = function(result) {
 # Convert p-value to significance marker (using HTML entities to avoid markdown interpretation)
 sigMarker = function(p) {
     ifelse(is.na(p), "",
-           ifelse(p < 0.001, "&#42;&#42;&#42;",
-                  ifelse(p < 0.01, "&#42;&#42;",
-                         ifelse(p < 0.05, "&#42;", ""))))
+           ifelse(p <= 0.001, "&#42;&#42;&#42;",
+                  ifelse(p <= 0.01, "&#42;&#42;",
+                         ifelse(p <= 0.05, "&#42;", ""))))
 }
 
 # Generate HTML table with significance markers and model stats
