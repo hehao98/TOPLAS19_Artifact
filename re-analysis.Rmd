@@ -274,6 +274,15 @@ if (USE_AUTHORS_INSTEAD_COMMITTERS) {
 }
 X = summarizeByLanguage(data)
 Y = logTransform(X, log, log)
+
+# Output the key regression dataset as CSV
+write.csv(Y, file = paste(WORKING_DIR, "/Data/regression_data.csv", sep = ""), row.names = FALSE)
+cat(paste("Regression dataset saved to:", WORKING_DIR, "/Data/regression_data.csv\n"))
+
+# Output cleaned commit-level data with all columns from newSha
+write.csv(data, file = paste(WORKING_DIR, "/Data/commits.csv", sep = ""), row.names = FALSE)
+cat(paste("Cleaned commits saved to:", WORKING_DIR, "/Data/commits.csv\n"))
+cat(paste("Total cleaned commits:", nrow(data), "\n"))
 ```
 
 # Graphs
